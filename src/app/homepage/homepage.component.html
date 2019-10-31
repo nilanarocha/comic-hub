@@ -1,1 +1,12 @@
 <p>homepage works!</p>
+
+<div *ngFor="let comic of comics">
+  <img [src]="comic.image" class=" card-img-top" alt="..." width="150" height="260">
+  <div class="card-body">
+    <h5 class="card-title">{{comic.name}}</h5>
+    <p class="card-text">{{comic.description}}
+    </p>
+    <a href="#" class="btn btn-danger">See more</a>
+
+  </div>
+</div>
