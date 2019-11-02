@@ -1,7 +1,7 @@
-<mat-grid-list cols="12">
+<mat-grid-list cols="12" [gutterSize]="'25px'">
   <div *ngFor="let comic of comics">
-    <mat-grid-tile [colspan]="4" [rowspan]="8">
-      <mat-card class="example-card">
+    <mat-grid-tile [colspan]="3" [rowspan]="8">
+      <mat-card class=" example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{comic.name}}</mat-card-title>
