@@ -46,6 +46,11 @@ export class ComicsDetailsComponent implements OnInit {
     });
   }
 
+  removeCharacter(id: number, characterId: number) {
+    console.log(id, characterId);
+    this.comic.characters = this.comic.characters.filter(character => character.id !== characterId);
+  }
+
 }
 
 

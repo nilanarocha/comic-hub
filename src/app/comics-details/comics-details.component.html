@@ -21,6 +21,7 @@
     <mat-grid-list cols="12" [gutterSize]="'25px'">
       <div *ngFor="let character of comic.characters">
         <mat-grid-tile [colspan]="2" [rowspan]="6">
+          <button mat-fab color="primary" (click)="removeCharacter(comic.id, character.id)">-</button>
           <mat-card class=" example-card">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
