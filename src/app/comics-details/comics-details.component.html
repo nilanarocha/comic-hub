@@ -1,6 +1,7 @@
 <div class="comics-details">
   <h1>Comic Details</h1>
   <div *ngIf="comic && comic.id">
+    <mat-toolbar><a routerLink="/homepage">Home</a> / {{ comic.name }}</mat-toolbar>
     <mat-grid-list cols="12" [gutterSize]="'25px'">
       <mat-grid-tile [colspan]="3" [rowspan]="5">
         <img [src]="comic.image" [alt]="comic.name">
@@ -11,7 +12,6 @@
       <mat-grid-tile [colspan]="9" [rowspan]="4">
         <div class="comic-details-description">{{ comic.description}}</div>
       </mat-grid-tile>
-      <a mat-button [routerLink]="['/homepage']">Back to Homepage</a>
     </mat-grid-list>
     <hr />
     <mat-grid-list cols="12" [gutterSize]="'25px'">
