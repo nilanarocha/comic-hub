@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ComicServiceService } from '../shared/services/comic-service.service';
+import { ComicServiceService, Comic } from '../shared/services/comic-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CharactersDialogComponent, DialogData } from './characters-dialog/characters-dialog.component';
 
@@ -13,10 +13,10 @@ import { CharactersDialogComponent, DialogData } from './characters-dialog/chara
 export class ComicsDetailsComponent implements OnInit {
 
   private subscription: Subscription;
-  comic: Object;
+  comic: Comic;
   character: DialogData = {
     name: '',
-    imageUrl: '',
+    image: '',
     description: '',
   };
 
@@ -27,7 +27,7 @@ export class ComicsDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.subscription = this.comicService.getComicDetailsById(id)
-      .subscribe(comic => this.comic = comic);
+      .subscribe((comic: Comic) => this.comic = comic);
   }
 
   ngOnDestroy() {
@@ -41,8 +41,8 @@ export class ComicsDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.character = result;
-      console.log('Adding character', this.character);
+      this.comic.characters.push(result);
+
     });
   }
 

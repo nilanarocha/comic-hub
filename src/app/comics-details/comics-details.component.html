@@ -26,7 +26,10 @@
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>{{character.name}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image [src]="character.image" [alt]="character.name">
+            <img mat-card-image *ngIf="character.image" [src]="character.image" [alt]="character.name">
+            <img mat-card-image *ngIf="!character.image"
+              src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+              [alt]="character.name">
             <mat-card-content>
               <p>
                 {{character.description | slice:0:400}} (...)

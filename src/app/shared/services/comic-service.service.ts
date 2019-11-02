@@ -4,11 +4,21 @@ import { MOCK } from './mock';
 import { HttpClient } from '@angular/common/http';
 
 import { catchError, tap, map } from 'rxjs/operators';
+export type ComicsCharacter = {
+  id: number | string;
+  numberOfRoles: number | string;
+  isGood: boolean | string;
+  image?: string;
+  name: string;
+  description: string;
+};
 
 export type Comic = {
   id: number | string;
   name: string;
   description: string;
+  image?: string;
+  characters: ComicsCharacter[];
 };
 
 const API_URL = 'https://propertymecomics.s3.amazonaws.com/comics';
