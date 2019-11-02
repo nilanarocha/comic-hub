@@ -6,13 +6,24 @@ import { SharedModule } from '../shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CharactersDialogComponent } from './characters-dialog/characters-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
-  declarations: [ComicsDetailsComponent],
+  declarations: [ComicsDetailsComponent, CharactersDialogComponent],
+  entryComponents: [CharactersDialogComponent],
   imports: [
     CommonModule,
     SharedModule,
     MatCardModule,
     MatGridListModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule,
     RouterModule.forChild([
       {
         path: '',
