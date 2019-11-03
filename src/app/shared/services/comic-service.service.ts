@@ -42,15 +42,16 @@ export class ComicServiceService {
     // and returning to the user. 
     // This value will be updated when the user refresh the page. 
     if (this.comics.length > 0) {
-      console.log('Using cached comics response');
+      console.log('[ComicService]: Using cached comics response');
       return of(this.comics);
     }
+
     return this.http.get(API_URL)
       .pipe(
         map((comics: Comic[]) => this.comics = comics),
-        tap(_ => console.log('fetched comics')),
+        tap(_ => console.log('[ComicService]: Fetching comics from API')),
         catchError(error => {
-          console.error(error);
+          console.error('[ComicService]: ERROR:', error);
           return of(COMICS_MOCK);
         }),
       );
@@ -61,9 +62,9 @@ export class ComicServiceService {
     // and returning the specific comic.
     return this.getComics().pipe(
       map((comics: Comic[]) => comics.find(c => +c.id === id)),
-      tap(_ => console.log(`fetched comic details ${id}`)),
+      tap(_ => console.log(`[ComicService]: Fetching comic details for id '${id}'`)),
       catchError(error => {
-        console.error(error);
+        console.error('[ComicService]: ERROR:', error);
         return of({});
       }),
     )
