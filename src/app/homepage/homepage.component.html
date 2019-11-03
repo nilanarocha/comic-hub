@@ -1,13 +1,20 @@
+<h1>Comics</h1>
+
 <mat-grid-list cols="12" [gutterSize]="'25px'">
   <mat-grid-tile [colspan]="3" [rowspan]="8" *ngFor="let comic of comics">
     <mat-card class=" example-card">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{ comic.name }}</mat-card-title>
       </mat-card-header>
       <img mat-card-image [src]="comic.image" [alt]="comic.name" />
       <mat-card-content>
-        <p>{{ comic.description | slice: 0:300 }} (...)</p>
+        <p>
+          {{
+            comic.description.length > 200
+              ? (comic.description | slice: 0:200) + '(...)'
+              : comic.description
+          }}
+        </p>
       </mat-card-content>
       <mat-card-actions>
         <button
