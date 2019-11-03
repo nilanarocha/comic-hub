@@ -4,16 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'comics-details/:id',
+    path: 'comics/details/:id/:name',
     loadChildren: () => import('./comics-details/comics-details.module').then(mod => mod.ComicsDetailsModule)
   },
   {
-    path: 'homepage',
+    path: '',
     loadChildren: () => import('./homepage/homepage.module').then(mod => mod.HomepageModule)
   },
   {
     path: '**',
-    redirectTo: '/homepage'
+    redirectTo: '/'
   }
 ];
 
