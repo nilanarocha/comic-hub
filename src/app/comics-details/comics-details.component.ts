@@ -46,7 +46,9 @@ export class ComicsDetailsComponent implements OnInit {
   }
 
   removeCharacter(id: number, characterId: number) {
-    this.comic.characters = this.comic.characters.filter(character => character.id !== characterId);
+    if (window.confirm('This operation is not reversible. Are you sure?')) {
+      this.comic.characters = this.comic.characters.filter(character => character.id !== characterId);
+    }
   }
 
   isCharacterPopular(character: ComicsCharacter) {
