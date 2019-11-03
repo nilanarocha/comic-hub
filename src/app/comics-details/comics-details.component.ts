@@ -76,11 +76,11 @@ export class ComicsDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  removeCharacter(id: number, characterId: number) {
+  removeCharacter(characterId: number | string) {
     // Checking if user really wants to remove character from comic.
     if (window.confirm('This operation is not reversible. Are you sure?')) {
       this.comic.characters = this.comic.characters.filter(
-        character => character.id !== characterId
+        character => +character.id !== +characterId
       );
       this.snackBar.open('Character removed with success', 'OK', {
         duration: 6000
