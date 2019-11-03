@@ -3,16 +3,20 @@
     <mat-card class=" example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{comic.name}}</mat-card-title>
+        <mat-card-title>{{ comic.name }}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="comic.image" [alt]="comic.name">
+      <img mat-card-image [src]="comic.image" [alt]="comic.name" />
       <mat-card-content>
-        <p>
-          {{comic.description | slice:0:400}} (...)
-        </p>
+        <p>{{ comic.description | slice: 0:300 }} (...)</p>
       </mat-card-content>
       <mat-card-actions>
-        <a mat-button [routerLink]="['/comics/details', comic.id, slugify(comic.name)]">More</a>
+        <button
+          mat-raised-button
+          [routerLink]="['/comics/details', comic.id, slugify(comic.name)]"
+          color="accent"
+        >
+          See More
+        </button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

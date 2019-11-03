@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [HomepageComponent],
@@ -13,6 +14,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     SharedModule,
     MatCardModule,
     MatGridListModule,
+    MatButtonModule,
     RouterModule.forChild([
       {
         path: '',
@@ -21,4 +23,4 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ])
   ]
 })
-export class HomepageModule { }
+export class HomepageModule {}

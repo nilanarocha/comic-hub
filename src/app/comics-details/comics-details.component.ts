@@ -76,15 +76,33 @@ export class ComicsDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  removeCharacter(characterId: number | string) {
+  removeCharacter(character: ComicsCharacter) {
     // Checking if user really wants to remove character from comic.
     if (window.confirm('This operation is not reversible. Are you sure?')) {
-      this.comic.characters = this.comic.characters.filter(
-        character => +character.id !== +characterId
-      );
-      this.snackBar.open('Character removed with success', 'OK', {
-        duration: 6000
-      });
+      // Checking if the received character is
+      // inside the current comic list. If it exists, returns
+      // the index for this character in the array,
+      // so we can remove it later
+      const index = this.comic.characters.indexOf(character);
+      if (index !== -1) {
+        // Removing the character in the array of characters
+        // inside comic
+        this.comic.characters.splice(index, 1);
+        this.snackBar.open('Character removed with success', 'OK', {
+          duration: 6000
+        });
+      } else {
+        // If for some reason we can't find the index for this
+        // specific character, we display the error message
+        // for the user
+        this.snackBar.open(
+          'Error trying to remove character. Please try again later',
+          'OK',
+          {
+            duration: 6000
+          }
+        );
+      }
     }
   }
 
