@@ -4,45 +4,65 @@
     <mat-toolbar><a routerLink="/">Home</a> / {{ comic.name }}</mat-toolbar>
     <mat-grid-list cols="12" [gutterSize]="'25px'">
       <mat-grid-tile [colspan]="3" [rowspan]="5">
-        <img [src]="comic.image" [alt]="comic.name">
+        <img [src]="comic.image" [alt]="comic.name" />
       </mat-grid-tile>
       <mat-grid-tile [colspan]="9" [rowspan]="1">
-        <h2 class="comic-details-title">{{ comic.name}}</h2>
+        <h2 class="comic-details-title">{{ comic.name }}</h2>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="9" [rowspan]="4">
-        <div class="comic-details-description">{{ comic.description}}</div>
+        <div class="comic-details-description">{{ comic.description }}</div>
       </mat-grid-tile>
     </mat-grid-list>
     <hr />
     <mat-grid-list cols="12" [gutterSize]="'25px'">
-      <h2>Characters <button mat-fab color="primary" (click)="openDialog()">+</button></h2>
+      <h2>
+        Characters
+        <button mat-fab color="primary" (click)="openDialog()">+</button>
+      </h2>
     </mat-grid-list>
     <mat-grid-list cols="12" [gutterSize]="'25px'">
-      <mat-grid-tile [colspan]="2" [rowspan]="6" *ngFor="let character of comic.characters">
+      <mat-grid-tile
+        [colspan]="2"
+        [rowspan]="6"
+        *ngFor="let character of comic.characters"
+      >
         <mat-card class=" example-card">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{character.name}}</mat-card-title>
+            <mat-card-title>{{ character.name }}</mat-card-title>
           </mat-card-header>
-          <img mat-card-image *ngIf="character.image" [src]="character.image" [alt]="character.name">
-          <img mat-card-image *ngIf="!character.image"
+          <img
+            mat-card-image
+            *ngIf="character.image"
+            [src]="character.image"
+            [alt]="character.name"
+          />
+          <img
+            mat-card-image
+            *ngIf="!character.image"
             src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
-            [alt]="character.name">
+            [alt]="character.name"
+          />
           <mat-card-content>
-            <mat-chip-list aria-label="Fish selection" *ngIf="isCharacterPopular(character)">
+            <mat-chip-list
+              aria-label="Fish selection"
+              *ngIf="isCharacterPopular(character)"
+            >
               <mat-chip color="accent" selected>
-                Popular - {{character.numberOfRoles}}
+                Popular - {{ character.numberOfRoles }}
               </mat-chip>
             </mat-chip-list>
-            <p>
-              {{character.description | slice:0:150}} (...)
-            </p>
-
+            <p>{{ character.description | slice: 0:150 }} (...)</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="warn" (click)="removeCharacter(comic.id, character.id)">Remove</button>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="removeCharacter(comic.id, character.id)"
+            >
+              Remove
+            </button>
           </mat-card-actions>
-
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
