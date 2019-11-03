@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComicServiceService, Comic } from '../shared/services/comic-service.service';
+import { ComicService, Comic } from '../shared/services/comic-service.service';
 import { SlugifyPipe } from '../shared/pipes/slugify.pipe';
 
 @Component({
@@ -9,7 +9,7 @@ import { SlugifyPipe } from '../shared/pipes/slugify.pipe';
 })
 export class HomepageComponent implements OnInit {
   comics: Comic[] = [];
-  constructor(private comicService: ComicServiceService, private slugifyPipe: SlugifyPipe) { }
+  constructor(private comicService: ComicService, private slugifyPipe: SlugifyPipe) { }
 
   ngOnInit() {
     this.getComics();

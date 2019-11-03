@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ComicServiceService, Comic, ComicsCharacter } from '../shared/services/comic-service.service';
+import { ComicService, Comic, ComicsCharacter } from '../shared/services/comic-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CharactersDialogComponent, DialogData } from './characters-dialog/characters-dialog.component';
 
@@ -15,7 +15,7 @@ export class ComicsDetailsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   comic: Comic;
 
-  constructor(private route: ActivatedRoute, private comicService: ComicServiceService, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private comicService: ComicService, public dialog: MatDialog) { }
 
   ngOnInit() {
     // Reading id coming from the route and converting into a number.

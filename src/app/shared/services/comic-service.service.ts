@@ -31,7 +31,7 @@ const API_URL = 'https://propertymecomics.s3.amazonaws.com/comics';
   providedIn: 'root'
 })
 
-export class ComicServiceService {
+export class ComicService {
 
   private comics: Comic[] = [];
 
