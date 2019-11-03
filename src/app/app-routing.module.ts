@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 // List with all routes for the App.
 // All the pages are loaded using async imports, which decreases
@@ -8,17 +9,25 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'comics/details/:id/:name',
-    loadChildren: () => import('./comics-details/comics-details.module').then(mod => mod.ComicsDetailsModule)
+    loadChildren: () =>
+      import('./comics-details/comics-details.module').then(
+        mod => mod.ComicsDetailsModule
+      )
   },
   {
     path: '',
-    loadChildren: () => import('./homepage/homepage.module').then(mod => mod.HomepageModule)
+    loadChildren: () =>
+      import('./homepage/homepage.module').then(mod => mod.HomepageModule)
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent
   },
   // If there is no match to any other route, user will
   // be redirected to homepage.
   {
     path: '**',
-    redirectTo: '/'
+    redirectTo: '/not-found'
   }
 ];
 
@@ -26,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
