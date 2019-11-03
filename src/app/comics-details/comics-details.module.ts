@@ -12,6 +12,7 @@ import { CharactersDialogComponent } from './characters-dialog/characters-dialog
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [ComicsDetailsComponent, CharactersDialogComponent],
@@ -26,6 +27,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     FormsModule,
     MatToolbarModule,
+    MatChipsModule,
     RouterModule.forChild([
       {
         path: '',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ComicServiceService, Comic } from '../shared/services/comic-service.service';
+import { ComicServiceService, Comic, ComicsCharacter } from '../shared/services/comic-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CharactersDialogComponent, DialogData } from './characters-dialog/characters-dialog.component';
 
@@ -42,15 +42,17 @@ export class ComicsDetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.comic.characters.push(result);
-
     });
   }
 
   removeCharacter(id: number, characterId: number) {
-    console.log(id, characterId);
     this.comic.characters = this.comic.characters.filter(character => character.id !== characterId);
   }
 
+  isCharacterPopular(character: ComicsCharacter) {
+    return +character.numberOfRoles > 2000
+
+  }
 }
 
 
