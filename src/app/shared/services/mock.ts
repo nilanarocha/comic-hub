@@ -1,4 +1,6 @@
-export const MOCK = [
+// Mock with the response for API. It will be used in case of API 
+//is not responding the App. 
+export const COMICS_MOCK = [
   {
     "id": "1",
     "slug": "omega-world",

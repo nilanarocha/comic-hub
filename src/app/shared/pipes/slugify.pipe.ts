@@ -5,6 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SlugifyPipe implements PipeTransform {
 
+  // This  method will tranform the string into a slug format. 
+  // This removes spaces, special characters from the given string.
   transform(input: string): string {
     return input.toString().toLowerCase()
       .replace(/\s+/g, '-')           // Replace spaces with -

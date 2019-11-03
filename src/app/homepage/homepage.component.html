@@ -1,22 +1,19 @@
 <mat-grid-list cols="12" [gutterSize]="'25px'">
-  <div *ngFor="let comic of comics">
-    <mat-grid-tile [colspan]="3" [rowspan]="8">
-      <mat-card class=" example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{comic.name}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image [src]="comic.image" [alt]="comic.name">
-        <mat-card-content>
-          <p>
-            {{comic.description | slice:0:400}} (...)
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button [routerLink]="['/comics/details', comic.id, slugify(comic.name)]">More</a>
-
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-  </div>
+  <mat-grid-tile [colspan]="3" [rowspan]="8" *ngFor="let comic of comics">
+    <mat-card class=" example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{comic.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="comic.image" [alt]="comic.name">
+      <mat-card-content>
+        <p>
+          {{comic.description | slice:0:400}} (...)
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button [routerLink]="['/comics/details', comic.id, slugify(comic.name)]">More</a>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
 </mat-grid-list>

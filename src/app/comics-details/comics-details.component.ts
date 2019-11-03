@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ComicServiceService, Comic, ComicsCharacter } from '../shared/services/comic-service.service';
@@ -10,20 +10,15 @@ import { CharactersDialogComponent, DialogData } from './characters-dialog/chara
   templateUrl: './comics-details.component.html',
   styleUrls: ['./comics-details.component.css']
 })
-export class ComicsDetailsComponent implements OnInit {
+export class ComicsDetailsComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   comic: Comic;
-  character: DialogData = {
-    name: '',
-    image: '',
-    description: '',
-  };
 
   constructor(private route: ActivatedRoute, private comicService: ComicServiceService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    // Reading id from route
+    // Reading id coming from the route and converting into a number.
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.subscription = this.comicService.getComicDetailsById(id)
@@ -35,25 +30,39 @@ export class ComicsDetailsComponent implements OnInit {
   }
 
   openDialog(): void {
+    // Default values for characters modal. 
+    const character: DialogData = {
+      name: '',
+      image: '',
+      description: '',
+    };
+    // Open the dialog to add a character.
     const dialogRef = this.dialog.open(CharactersDialogComponent, {
       width: '60%',
-      data: this.character
+      data: character,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.comic.characters.push(result);
+      // Angular Material Dialog returns "result" as "undefined"
+      // If user clicks in cancel button. 
+      // So I am adding a new character only if result exist 
+      if (result) {
+        this.comic.characters.push(result);
+      }
     });
   }
 
   removeCharacter(id: number, characterId: number) {
+    // Checking if user really wants to remove character from comic. 
     if (window.confirm('This operation is not reversible. Are you sure?')) {
       this.comic.characters = this.comic.characters.filter(character => character.id !== characterId);
     }
   }
 
   isCharacterPopular(character: ComicsCharacter) {
-    return +character.numberOfRoles > 2000
-
+    // CHecking if the character has more than the  minimum to be a popular.
+    const minimumOfRolesToBePopular = 2000;
+    return +character.numberOfRoles > minimumOfRolesToBePopular;
   }
 }
 

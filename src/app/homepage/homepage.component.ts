@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComicServiceService } from '../shared/services/comic-service.service';
+import { ComicServiceService, Comic } from '../shared/services/comic-service.service';
 import { SlugifyPipe } from '../shared/pipes/slugify.pipe';
 
 @Component({
@@ -8,7 +8,7 @@ import { SlugifyPipe } from '../shared/pipes/slugify.pipe';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  comics: any = [];
+  comics: Comic[] = [];
   constructor(private comicService: ComicServiceService, private slugifyPipe: SlugifyPipe) { }
 
   ngOnInit() {
@@ -16,11 +16,13 @@ export class HomepageComponent implements OnInit {
   }
 
   getComics(): void {
+    // Getting list of comics to be rendered in the page. 
     this.comicService.getComics()
       .subscribe(comics => this.comics = comics);
   }
 
   slugify(text: string) {
+    // Transforming text to URL friendly format. 
     return this.slugifyPipe.transform(text);
   }
 

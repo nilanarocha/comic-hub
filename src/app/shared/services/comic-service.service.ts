@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { MOCK } from './mock';
+import { COMICS_MOCK } from './mock';
 import { HttpClient } from '@angular/common/http';
 
 import { catchError, tap, map } from 'rxjs/operators';
+
+// Typing for character objects.
 export type ComicsCharacter = {
   id: number | string;
   numberOfRoles: number | string;
@@ -13,6 +15,7 @@ export type ComicsCharacter = {
   description: string;
 };
 
+// Typing for comic objects.
 export type Comic = {
   id: number | string;
   name: string;
@@ -21,6 +24,7 @@ export type Comic = {
   characters: ComicsCharacter[];
 };
 
+// Default API URL. 
 const API_URL = 'https://propertymecomics.s3.amazonaws.com/comics';
 
 @Injectable({
@@ -34,6 +38,9 @@ export class ComicServiceService {
   constructor(private http: HttpClient) { }
 
   getComics(): Observable<Comic[]> {
+    // If the comics API was called already the App will reuse the cached data 
+    // and returning to the user. 
+    // This value will be updated when the user refresh the page. 
     if (this.comics.length > 0) {
       console.log('Using cached comics response');
       return of(this.comics);
@@ -44,12 +51,14 @@ export class ComicServiceService {
         tap(_ => console.log('fetched comics')),
         catchError(error => {
           console.error(error);
-          return of(MOCK);
+          return of(COMICS_MOCK);
         }),
       );
   }
 
   getComicDetailsById(id: number): Observable<Comic | Object> {
+    // Getting list of comics using cache-first approach 
+    // and returning the specific comic.
     return this.getComics().pipe(
       map((comics: Comic[]) => comics.find(c => +c.id === id)),
       tap(_ => console.log(`fetched comic details ${id}`)),

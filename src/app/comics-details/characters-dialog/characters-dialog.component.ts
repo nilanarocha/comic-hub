@@ -14,12 +14,12 @@ export interface DialogData {
 })
 export class CharactersDialogComponent {
 
-
   constructor(
     public dialogRef: MatDialogRef<CharactersDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-  onNoClick(): void {
+  onCancelClick(): void {
+    // Closes the modal when user clicks on cancel button. 
     this.dialogRef.close();
   }
 }
