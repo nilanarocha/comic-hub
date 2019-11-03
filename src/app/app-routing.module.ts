@@ -24,7 +24,7 @@ const routes: Routes = [
     component: NotFoundComponent
   },
   // If there is no match to any other route, user will
-  // be redirected to homepage.
+  // be redirected to error page.
   {
     path: '**',
     redirectTo: '/not-found'
