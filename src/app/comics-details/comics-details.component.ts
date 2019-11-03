@@ -30,7 +30,7 @@ export class ComicsDetailsComponent implements OnInit, OnDestroy {
   }
 
   openDialog(): void {
-    // Default values for characters modal. 
+    // Default values for characters modal.
     const character: DialogData = {
       name: '',
       image: '',
@@ -44,16 +44,16 @@ export class ComicsDetailsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       // Angular Material Dialog returns "result" as "undefined"
-      // If user clicks in cancel button. 
-      // So I am adding a new character only if result exist 
-      if (result) {
+      // If user clicks in cancel button.
+      // So I am adding a new character only if result exist
+      if (result && result.image && result.name && result.description) {
         this.comic.characters.push(result);
       }
     });
   }
 
   removeCharacter(id: number, characterId: number) {
-    // Checking if user really wants to remove character from comic. 
+    // Checking if user really wants to remove character from comic.
     if (window.confirm('This operation is not reversible. Are you sure?')) {
       this.comic.characters = this.comic.characters.filter(character => character.id !== characterId);
     }

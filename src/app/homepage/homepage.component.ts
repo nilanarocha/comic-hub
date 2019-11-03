@@ -16,13 +16,13 @@ export class HomepageComponent implements OnInit {
   }
 
   getComics(): void {
-    // Getting list of comics to be rendered in the page. 
+    // Getting list of comics to be rendered in the page.
     this.comicService.getComics()
       .subscribe(comics => this.comics = comics);
   }
 
   slugify(text: string) {
-    // Transforming text to URL friendly format. 
+    // Transforming text to URL friendly format.
     return this.slugifyPipe.transform(text);
   }
 
