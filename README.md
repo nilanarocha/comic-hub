@@ -7,7 +7,6 @@ This is an aplication which displays the Comics in Marvel collection. Using thes
 - Angular
 - Angular CLI
 - Angular Material
-- RXJS
 - Postman (to check API responses)
 
 ## Demo
